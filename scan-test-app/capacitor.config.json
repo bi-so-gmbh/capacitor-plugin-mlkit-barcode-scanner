@@ -1,6 +1,5 @@
 {
   "appId": "com.biso.scanner.test",
   "appName": "ScanTestApp",
-  "bundledWebRuntime": false,
   "webDir": "dist"
 }

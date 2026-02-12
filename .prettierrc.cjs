@@ -1,4 +1,11 @@
 module.exports = {
   ...require('@ionic/prettier-config'),
-  plugins: ['prettier-plugin-java']
+  overrides: [
+    {
+      files: ["*.ts", "*.js"],
+      options: {
+        "semi": false
+      }
+    }
+  ]
 }

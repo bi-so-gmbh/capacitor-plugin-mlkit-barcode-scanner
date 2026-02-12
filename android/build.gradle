@@ -12,20 +12,20 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.7.2'
+        classpath 'com.android.tools.build:gradle:8.12.3'
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.biso.capacitor.plugins.mlkit.barcode.scanner"
+    namespace = "com.biso.capacitor.plugins.mlkit.barcode.scanner"
     defaultConfig {
-        compileSdk project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 35
-        minSdkVersion project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 26
-        targetSdkVersion project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 35
-        versionCode 107
-        versionName "1.0.7"
+        compileSdk = project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
+        minSdk = project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 26
+        targetSdk = project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
+        versionCode = 300
+        versionName = "3.0.0"
     }
     buildTypes {
         release {
@@ -34,14 +34,14 @@ android {
         }
     }
     lintOptions {
-        abortOnError false
+        abortOnError = false
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_21
         targetCompatibility JavaVersion.VERSION_21
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
     }
 }
 

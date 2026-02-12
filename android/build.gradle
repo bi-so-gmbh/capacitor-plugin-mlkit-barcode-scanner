@@ -12,7 +12,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.12.3'
+        classpath 'com.android.tools.build:gradle:8.13.2'
     }
 }
 
@@ -24,8 +24,8 @@ android {
         compileSdk = project.hasProperty('compileSdkVersion') ? rootProject.ext.compileSdkVersion : 36
         minSdk = project.hasProperty('minSdkVersion') ? rootProject.ext.minSdkVersion : 26
         targetSdk = project.hasProperty('targetSdkVersion') ? rootProject.ext.targetSdkVersion : 36
-        versionCode = 300
-        versionName = "3.0.0"
+        versionCode = 400
+        versionName = "4.0.0"
     }
     buildTypes {
         release {

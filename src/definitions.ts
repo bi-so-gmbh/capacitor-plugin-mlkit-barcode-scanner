@@ -11,26 +11,26 @@ export interface MlKitBarcodeScannerPlugin {
    *   * PLATFORM_NOT_SUPPORTED
    * @param settings{ISettings} settings to be used for the scan
    */
-  scan(settings: ISettings): Promise<IResult>;
+  scan(settings: ISettings): Promise<IResult>
 }
 
 /**
  * Options to make it possible to narrow down the barcode types scanned.
  */
 export interface IBarcodeFormats {
-  Aztec: boolean;
-  CodaBar: boolean;
-  Code39: boolean;
-  Code93: boolean;
-  Code128: boolean;
-  DataMatrix: boolean;
-  EAN8: boolean;
-  EAN13: boolean;
-  ITF: boolean;
-  PDF417: boolean;
-  QRCode: boolean;
-  UPCA: boolean;
-  UPCE: boolean;
+  Aztec: boolean
+  CodaBar: boolean
+  Code39: boolean
+  Code93: boolean
+  Code128: boolean
+  DataMatrix: boolean
+  EAN8: boolean
+  EAN13: boolean
+  ITF: boolean
+  PDF417: boolean
+  QRCode: boolean
+  UPCA: boolean
+  UPCE: boolean
 }
 
 /**
@@ -40,22 +40,22 @@ export interface IBarcodeFormats {
  * If the value is greater than 1 the detector will not be visible on the screen.
  */
 export interface ISettings {
-  barcodeFormats?: IBarcodeFormats;
-  beepOnSuccess?: boolean;
-  vibrateOnSuccess?: boolean;
-  detectorSize?: number;
-  detectorAspectRatio?: string;
-  drawFocusRect?: boolean;
-  focusRectColor?: string;
-  focusRectBorderRadius?: number;
-  focusRectBorderThickness?: number;
-  drawFocusLine?: boolean;
-  focusLineColor?: string;
-  focusLineThickness?: number;
-  drawFocusBackground?: boolean;
-  focusBackgroundColor?: string;
-  stableThreshold?: number;
-  debugOverlay?: boolean;
+  barcodeFormats?: IBarcodeFormats
+  beepOnSuccess?: boolean
+  vibrateOnSuccess?: boolean
+  detectorSize?: number
+  detectorAspectRatio?: string
+  drawFocusRect?: boolean
+  focusRectColor?: string
+  focusRectBorderRadius?: number
+  focusRectBorderThickness?: number
+  drawFocusLine?: boolean
+  focusLineColor?: string
+  focusLineThickness?: number
+  drawFocusBackground?: boolean
+  focusBackgroundColor?: string
+  stableThreshold?: number
+  debugOverlay?: boolean
 }
 
 /**
@@ -64,10 +64,12 @@ export interface ISettings {
  * far away the center of the barcode is from the center of the scan area.
  */
 export interface IResult {
-  barcodes: [{
-    value: string;
-    format: string;
-    type: string;
-    distanceToCenter: number;
-  }]
+  barcodes: [
+    {
+      value: string
+      format: string
+      type: string
+      distanceToCenter: number
+    },
+  ]
 }

@@ -17,57 +17,56 @@
  * under the License.
  */
 
-import {Capacitor} from '@capacitor/core'
-import {MlKitBarcodeScanner} from 'capacitor-plugin-ml-kit-barcode-scanner'
+import { Capacitor } from '@capacitor/core'
+import { MlKitBarcodeScanner } from 'capacitor-plugin-ml-kit-barcode-scanner'
 
 const options = {
   beepOnSuccess: false,
   vibrateOnSuccess: false,
   detectorSize: 0.9,
-  detectorAspectRatio: "5:1",
+  detectorAspectRatio: '5:1',
   drawFocusRect: true,
-  focusRectColor: "#FFFFFF",
+  focusRectColor: '#FFFFFF',
   focusRectBorderRadius: 10,
   focusRectBorderThickness: 5,
   drawFocusLine: false,
-  focusLineColor: "#ff2d37",
+  focusLineColor: '#ff2d37',
   focusLineThickness: 2,
   drawFocusBackground: false,
-  focusBackgroundColor: "#66FFFFFF",
+  focusBackgroundColor: '#66FFFFFF',
   stableThreshold: 5,
   debugOverlay: false,
-  ignoreRotatedBarcodes: false
-};
+  ignoreRotatedBarcodes: false,
+}
 
-init();
+init()
 
 function onSuccess(result) {
-  const scan = document.createElement('div');
-    for (const barcode of result.barcodes) {
-        const node = document.createElement('div');
-        node.className = 'log_item'
-        node.textContent = `${barcode.value} (${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`;
-        scan.appendChild(node)
-    }
-  document.getElementById('output').prepend(scan);
+  const scan = document.createElement('div')
+  for (const barcode of result.barcodes) {
+    const node = document.createElement('div')
+    node.className = 'log_item'
+    node.textContent = `${barcode.value} (${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
+    scan.appendChild(node)
+  }
+  document.getElementById('output').prepend(scan)
 }
 
 function onFail(result) {
-    const node = document.createElement('div');
-    node.className = 'log_item'
-    node.textContent = `${result}`;
-    document.getElementById('output').prepend(node);
+  const node = document.createElement('div')
+  node.className = 'log_item'
+  node.textContent = `${result}`
+  document.getElementById('output').prepend(node)
 }
 
 async function scan() {
-  console.log("scan button clicked")
+  console.log('scan button clicked')
   for (const key in options) {
-    const element =  document.getElementById(key);
+    const element = document.getElementById(key)
     if (element) {
-      if (element.tagName === "INPUT" && element.type === "checkbox") {
+      if (element.tagName === 'INPUT' && element.type === 'checkbox') {
         options[key] = element.checked
-      }
-      else {
+      } else {
         options[key] = element.value
       }
     }
@@ -75,7 +74,7 @@ async function scan() {
 
   try {
     let result = await MlKitBarcodeScanner.scan(options)
-    console.log("result", result)
+    console.log('result', result)
     onSuccess(result)
   } catch (error) {
     console.log(error)
@@ -92,22 +91,20 @@ function clearLog() {
 }
 
 function init() {
-  console.log('Running capacitor-' + Capacitor.getPlatform());
-  document.getElementById('scan').onclick = scan;
-  document.getElementById('clearLog').onclick = clearLog;
+  console.log('Running capacitor-' + Capacitor.getPlatform())
+  document.getElementById('scan').onclick = scan
+  document.getElementById('clearLog').onclick = clearLog
 
   for (const key in options) {
-    const element =  document.getElementById(key);
+    const element = document.getElementById(key)
     if (element) {
-      if (element.tagName === "INPUT" && element.type === "range") {
-        element.addEventListener("input", updateTextInput)
-        element.nextElementSibling.value=options[key]
+      if (element.tagName === 'INPUT' && element.type === 'range') {
+        element.addEventListener('input', updateTextInput)
+        element.nextElementSibling.value = options[key]
         element.value = options[key]
-      }
-      else if (element.tagName === "INPUT" && element.type === "checkbox") {
+      } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
         element.checked = options[key]
-      }
-      else {
+      } else {
         element.value = options[key]
       }
     }
@@ -115,5 +112,5 @@ function init() {
 }
 
 function updateTextInput() {
-  document.getElementById(this.id).nextElementSibling.value=this.value;
+  document.getElementById(this.id).nextElementSibling.value = this.value
 }

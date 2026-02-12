@@ -105,7 +105,7 @@ public class MlKitBarcodeScannerPlugin extends Plugin {
         // noinspection deprecation
         barcodes = data.getParcelableArrayListExtra(BARCODES); // NOSONAR
       }
-      if (barcodes.isEmpty()) {
+      if (barcodes == null || barcodes.isEmpty()) {
         call.reject("NO_BARCODE");
         return;
       }

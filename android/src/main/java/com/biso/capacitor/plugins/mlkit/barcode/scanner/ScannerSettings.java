@@ -296,7 +296,7 @@ public class ScannerSettings implements Parcelable {
     this.ignoreRotatedBarcodes = in.readByte() != 0;
   }
 
-  public static final Creator<ScannerSettings> CREATOR = new Creator<ScannerSettings>() {
+  public static final Creator<ScannerSettings> CREATOR = new Creator<>() {
     @Override
     public ScannerSettings createFromParcel(Parcel source) {
       return new ScannerSettings(source);

@@ -15,6 +15,7 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import java.util.List;
 import org.json.JSONObject;
+import androidx.annotation.NonNull;
 
 public class CameraOverlay extends SurfaceView implements Callback {
 
@@ -36,7 +37,7 @@ public class CameraOverlay extends SurfaceView implements Callback {
   }
 
   @Override
-  public void surfaceCreated(SurfaceHolder surfaceHolder) {
+  public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
     // intentionally empty
   }
 
@@ -64,7 +65,7 @@ public class CameraOverlay extends SurfaceView implements Callback {
   }
 
   @Override
-  public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+  public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
     // intentionally empty
   }
 

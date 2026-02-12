@@ -96,9 +96,15 @@ public class BarcodeAnalyzer implements Analyzer {
         }
       }
     } catch (ExecutionException e) {
-      Log.e(ANALYZER, e.getMessage());
+      Log.e(
+        ANALYZER,
+        e.getMessage() != null ? e.getMessage() : "Execution Exception without message happened"
+      );
     } catch (InterruptedException e) {
-      Log.e(ANALYZER, e.getMessage());
+      Log.e(
+        ANALYZER,
+        e.getMessage() != null ? e.getMessage() : "Interrupted Exception without message happened"
+      );
       Thread.currentThread().interrupt();
     }
     imageProxy.close();

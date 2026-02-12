@@ -28,7 +28,7 @@ public enum BarcodeType {
 
   public static BarcodeType getFromInt(int intValue) {
     for (BarcodeType value : BarcodeType.values()) {
-      if(value.type == intValue) {
+      if (value.type == intValue) {
         return value;
       }
     }

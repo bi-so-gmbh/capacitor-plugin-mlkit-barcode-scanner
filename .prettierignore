@@ -1,3 +1,0 @@
-dist
-scan-test-app/*
-!scan-test-app/src/

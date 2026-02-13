@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "**/build",
+    "**/dist",
+    "vite.config.ts",
+    "scan-test-app/",
+    "*!scan-test-app/src/",
+    "ios",
+    "android",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/*.{cjs, mjs}"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    "**/build",
+    "**/dist",
+    "vite.config.ts",
+    "scan-test-app/",
+    "*!scan-test-app/src/",
+    "ios",
+    "android",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/*.md"
+  ],
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": false,
+  "singleQuote": true,
+  "trailingComma": "none",
+  "bracketSpacing": true,
+  "arrowParens": "avoid"
+}

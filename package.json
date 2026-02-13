@@ -37,10 +37,8 @@
     "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination generic/platform=iOS && cd ..",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
-    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
-    "fmt": "npm run eslint -- --fix && npm run prettier -- --write && npm run swiftlint -- --fix --format",
-    "eslint": "eslint . --ext ts",
-    "prettier": "prettier \"**/*.{ts,js}\" --write",
+    "lint": "oxlint && oxfmt --check && npm run swiftlint -- lint",
+    "fmt": "oxlint --fix && oxfmt --write && npm run swiftlint -- --fix --format",
     "swiftlint": "node-swiftlint",
     "docgen": "docgen --api MlKitBarcodeScannerPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
@@ -53,25 +51,14 @@
     "@capacitor/cli": "^8.0.0",
     "@capacitor/docgen": "^0.3.1",
     "@capacitor/ios": "^8.0.0",
-    "@ionic/eslint-config": "^0.4.0",
-    "@ionic/prettier-config": "^4.0.0",
-    "@ionic/swiftlint-config": "^2.0.0",
-    "eslint": "^8.57.1",
-    "prettier": "^3.6.2",
+    "oxfmt": "^0.32.0",
+    "oxlint": "^1.47.0",
     "rimraf": "^6.1.0",
     "rollup": "^4.53.2",
-    "swiftlint": "^2.0.0",
-    "typescript": "^5.9.3"
+    "swiftlint": "^2.0.0"
   },
   "peerDependencies": {
     "@capacitor/core": ">=8.0.0 < 9"
-  },
-  "swiftlint": "@ionic/swiftlint-config",
-  "eslintConfig": {
-    "extends": "@ionic/eslint-config/recommended",
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    }
   },
   "capacitor": {
     "ios": {

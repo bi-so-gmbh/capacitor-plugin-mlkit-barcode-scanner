@@ -70,6 +70,6 @@ export interface IResult {
       format: string
       type: string
       distanceToCenter: number
-    },
+    }
   ]
 }

@@ -18,7 +18,7 @@
  */
 
 import { Capacitor } from '@capacitor/core'
-import { MlKitBarcodeScanner } from 'capacitor-plugin-ml-kit-barcode-scanner'
+import { MlKitBarcodeScanner } from '@biso_gmbh/capacitor-plugin-ml-kit-barcode-scanner'
 
 const options = {
   beepOnSuccess: false,

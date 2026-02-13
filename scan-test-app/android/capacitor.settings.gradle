@@ -2,5 +2,5 @@
 include ':capacitor-android'
 project(':capacitor-android').projectDir = new File('../node_modules/@capacitor/android/capacitor')
 
-include ':capacitor-plugin-ml-kit-barcode-scanner'
-project(':capacitor-plugin-ml-kit-barcode-scanner').projectDir = new File('../../android')
+include ':biso_gmbh-capacitor-plugin-ml-kit-barcode-scanner'
+project(':biso_gmbh-capacitor-plugin-ml-kit-barcode-scanner').projectDir = new File('../../android')

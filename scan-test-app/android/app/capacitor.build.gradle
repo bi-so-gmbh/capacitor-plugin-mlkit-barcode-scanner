@@ -9,7 +9,7 @@ android {
 
 apply from: "../capacitor-cordova-android-plugins/cordova.variables.gradle"
 dependencies {
-    implementation project(':capacitor-plugin-ml-kit-barcode-scanner')
+    implementation project(':biso_gmbh-capacitor-plugin-ml-kit-barcode-scanner')
 
 }
 

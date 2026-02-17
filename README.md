@@ -3,13 +3,23 @@ A really configurable implementation of googles MLKit Vision barcode scanning AP
 
 This is a capacitor port of [bi-so-gmbh / cordova-plugin-mlkit-barcode-scanner](https://github.com/bi-so-gmbh/cordova-plugin-mlkit-barcode-scanner)
 
-> [!IMPORTANT]  
-> Version 2.x.x and upwards are Capacitor 6 versions. For Capacitor 5 use version 1.x.x
+> [!IMPORTANT]
+> * 4.x.x are Capacitor 8 versions
+> * 3.x.x are Capacitor 7 versions
+> * 2.x.x are Capacitor 6 versions
+> * 1.x.x are Capacitor 5 versions
+> * no support for Capacitor versions below 5
+
 
 ## Supported Versions
 
 ### iOS
-A version of 1.15.0 or higher is needed. This is because that is the oldest version I can build the app on an emulator to test if the build runs through.
+
+iOS 15.5+ and Xcode 26.0+
+
+### Android
+
+Android 8.0 Oreo (API level 26) and Android Studio Otter | 2025.2.1 or newer (AGP 8.13.0 which the IntelliJ Android plugin can't do as of today (17.02.2026))
 
 ## Install
 

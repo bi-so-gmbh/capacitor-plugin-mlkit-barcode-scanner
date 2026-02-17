@@ -10,7 +10,9 @@
     "android",
     "**/package.json",
     "**/package-lock.json",
-    "**/*.md"
+    "**/*.md",
+    "**/**.cjs",
+    "**/**.mjs"
   ],
   "printWidth": 100,
   "tabWidth": 2,

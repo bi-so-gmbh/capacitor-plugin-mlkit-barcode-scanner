@@ -36,7 +36,7 @@ const options = {
   focusBackgroundColor: '#66FFFFFF',
   stableThreshold: 5,
   debugOverlay: false,
-  ignoreRotatedBarcodes: false,
+  ignoreRotatedBarcodes: false
 }
 
 init()

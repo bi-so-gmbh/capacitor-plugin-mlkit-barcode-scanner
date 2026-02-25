@@ -1,5 +1,5 @@
 export default {
-  excluded: ['${PWD}/node_modules', '${PWD}/ios/Pods', '${PWD}/example-app'],
+  included: ['${PWD}/ios/Plugin'],
   opt_in_rules: [
     'implicitly_unwrapped_optional',
     'file_name_no_space',
@@ -8,7 +8,9 @@ export default {
     'lower_acl_than_parent',
     'modifier_order',
     'overridden_super_call',
-    'unowned_variable_capture',
+    'unowned_variable_capture'
+  ],
+  analyzer_rules: [
     'unused_import'
   ],
   line_length: {

@@ -13,10 +13,12 @@ class ScannerSettings: CustomDebugStringConvertible {
         return des + "\n}"
     }
     
+    // swiftlint:disable identifier_name
     // on android lines are much thinner, this evens out the look and feel
     private static let LINE_THICKNESS_ADJUSTMENT = -3
     // same with corner radius, way less pronounced on android
     private static var CORNER_RADIUS_ADJUSTMENT = -5
+    // swiftlint:enable identifier_name
     
     public private(set) var barcodeFormats: Int = 0
     public private(set) var aspectRatio: String = "1:1"
@@ -40,6 +42,7 @@ class ScannerSettings: CustomDebugStringConvertible {
     public private(set) var debugOverlay: Bool = false
     public private(set) var ignoreRotatedBarcodes: Bool = false
     
+    // swiftlint:disable:next cyclomatic_complexity
     init(options:[String:Any]) {
         var bFormats: [String:Any]
         if let unwrapped: [String:Any] = options[Settings.BARCODE_FORMATS] as? [String:Any] {
@@ -150,6 +153,7 @@ class ScannerSettings: CustomDebugStringConvertible {
     }
 }
 
+// swiftlint:disable identifier_name
 private enum Settings {
     static let BARCODE_FORMATS: String = "barcodeFormats";
     static let DETECTOR_ASPECT_RATIO: String = "detectorAspectRatio";
@@ -169,3 +173,4 @@ private enum Settings {
     static let DEBUG_OVERLAY: String = "debugOverlay";
     static let IGNORE_ROTATED_BARCODES: String = "ignoreRotatedBarcodes";
 }
+// swiftlint:enable identifier_name

@@ -1,6 +1,7 @@
 import MLKitBarcodeScanning
 
 public enum BarcodeType: String, CaseIterable {
+    // swiftlint:disable identifier_name
     case UNKNOWN
     case CONTACT_INFO
     case EMAIL
@@ -14,6 +15,7 @@ public enum BarcodeType: String, CaseIterable {
     case GEO
     case CALENDAR_EVENT
     case DRIVER_LICENSE
+    // swiftlint:enable identifier_name
     
     var asInt: Int {
         switch self {

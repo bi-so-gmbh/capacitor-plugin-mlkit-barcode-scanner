@@ -1,6 +1,7 @@
 import MLKitBarcodeScanning
 
 public enum BarcodeFormat: String, CaseIterable {
+    // swiftlint:disable identifier_name
     case Code128
     case Code39
     case Code93
@@ -14,6 +15,7 @@ public enum BarcodeFormat: String, CaseIterable {
     case UPCE
     case PDF417
     case Aztec
+    // swiftlint:enable identifier_name
     
     var asInt: Int {
         switch self {

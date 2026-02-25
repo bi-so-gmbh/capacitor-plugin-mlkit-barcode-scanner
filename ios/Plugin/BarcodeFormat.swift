@@ -16,7 +16,7 @@ public enum BarcodeFormat: String, CaseIterable {
     case PDF417
     case Aztec
     // swiftlint:enable identifier_name
-    
+
     var asInt: Int {
         switch self {
         case BarcodeFormat.Code128: return MLKitBarcodeScanning.BarcodeFormat.code128.rawValue
@@ -34,10 +34,10 @@ public enum BarcodeFormat: String, CaseIterable {
         case BarcodeFormat.Aztec: return MLKitBarcodeScanning.BarcodeFormat.aztec.rawValue
         }
     }
-    
+
     static func getFromInt(intValue: Int) -> BarcodeFormat? {
         for barcodeFormat in BarcodeFormat.allCases {
-            if (barcodeFormat.asInt == intValue) {
+            if barcodeFormat.asInt == intValue {
                 return barcodeFormat
             }
         }

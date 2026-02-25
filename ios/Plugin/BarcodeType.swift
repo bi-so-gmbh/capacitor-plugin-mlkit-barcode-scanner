@@ -16,7 +16,7 @@ public enum BarcodeType: String, CaseIterable {
     case CALENDAR_EVENT
     case DRIVER_LICENSE
     // swiftlint:enable identifier_name
-    
+
     var asInt: Int {
         switch self {
         case BarcodeType.UNKNOWN: return MLKitBarcodeScanning.BarcodeValueType.unknown.rawValue
@@ -34,10 +34,10 @@ public enum BarcodeType: String, CaseIterable {
         case BarcodeType.DRIVER_LICENSE: return MLKitBarcodeScanning.BarcodeValueType.driversLicense.rawValue
         }
     }
-    
+
     static func getFromInt(intValue: Int) -> BarcodeType? {
         for barcodeType in BarcodeType.allCases {
-            if (barcodeType.asInt == intValue) {
+            if barcodeType.asInt == intValue {
                 return barcodeType
             }
         }

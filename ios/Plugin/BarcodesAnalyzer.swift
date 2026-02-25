@@ -10,18 +10,18 @@ class BarcodeAnalyzer {
     private var cameraOverlay: CameraOverlay
     private var barcodesListener: BarcodesListener
     private var settings: ScannerSettings
-    
+
     private var lastBarcodes: [DetectedBarcode] = []
     private var stableCounter: Int = 0
-    
-    init(settings: ScannerSettings, barcodesListener: BarcodesListener, cameraOverlay:CameraOverlay) {
+
+    init(settings: ScannerSettings, barcodesListener: BarcodesListener, cameraOverlay: CameraOverlay) {
         let barcodeFormats = MLKitBarcodeScanning.BarcodeFormat(rawValue: settings.barcodeFormats)
         scanner = BarcodeScanner.barcodeScanner(options: BarcodeScannerOptions(formats: barcodeFormats))
         self.cameraOverlay = cameraOverlay
         self.barcodesListener = barcodesListener
         self.settings = settings
     }
-    
+
     func analyze(in image: VisionImage, width: CGFloat, height: CGFloat) {
         var barcodes: [Barcode] = []
         do {
@@ -29,7 +29,7 @@ class BarcodeAnalyzer {
         } catch let error {
             print(error.localizedDescription)
         }
-        
+
         var detectedBarcodes: [DetectedBarcode] = []
         for barcode in barcodes {
             let normalizedRect = CGRect(
@@ -39,35 +39,35 @@ class BarcodeAnalyzer {
                 height: barcode.frame.size.height / height
             )
             let convertedRect = cameraOverlay.previewLayer.layerRectConverted(fromMetadataOutputRect: normalizedRect)
-            
+
             detectedBarcodes.append(DetectedBarcode(barcode: barcode, bounds: convertedRect, centerX: cameraOverlay.previewLayer.bounds.midX, centerY: cameraOverlay.previewLayer.bounds.midY))
         }
-        
-        if (settings.debugOverlay) {
+
+        if settings.debugOverlay {
             cameraOverlay.drawDebugOverlay(barcodes: detectedBarcodes)
         }
-        
-        if (areBarcodesStable(barcodes: detectedBarcodes) && stableCounter >= settings.stableThreshold) {
+
+        if areBarcodesStable(barcodes: detectedBarcodes) && stableCounter >= settings.stableThreshold {
             var barcodesInScanArea: [DetectedBarcode] = []
             for barcode in detectedBarcodes {
-                if (barcode.isInScanArea(scanArea: cameraOverlay.scanArea, ignoreRotated: settings.ignoreRotatedBarcodes)) {
+                if barcode.isInScanArea(scanArea: cameraOverlay.scanArea, ignoreRotated: settings.ignoreRotatedBarcodes) {
                     barcodesInScanArea.append(barcode)
                 }
             }
             barcodesInScanArea.sort {
                 $0.distanceToCenter < $1.distanceToCenter
             }
-            if (!barcodesInScanArea.isEmpty) {
+            if !barcodesInScanArea.isEmpty {
                 barcodesListener.onBarcodesFound(barcodesInScanArea)
             }
         }
     }
-    
+
     private func areBarcodesStable(barcodes: [DetectedBarcode]) -> Bool {
         let barcodesSet = Set(barcodes)
         let lastBarcodesSet = Set(lastBarcodes)
         let differences = barcodesSet.subtracting(lastBarcodesSet)
-        if (!barcodes.isEmpty && differences.isEmpty) {
+        if !barcodes.isEmpty && differences.isEmpty {
             stableCounter += 1
             print("barcodes stable for \(stableCounter)/\(settings.stableThreshold)")
             return true

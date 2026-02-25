@@ -35,9 +35,11 @@ class DetectedBarcode: Hashable, Equatable, CustomDebugStringConvertible {
         format = barcode.format.rawValue
         barcodeType = barcode.valueType.rawValue
         self.bounds = bounds
+        // barcode has either rawValue or rawData set according to documentation. if neither is set, we should fail
         if let rawValue = barcode.rawValue {
             value = rawValue
         } else {
+            // swiftlint:disable:next force_unwrapping
             value = String(data: barcode.rawData!, encoding: .ascii)!
         }
         self.isPortrait = bounds.height > bounds.width
@@ -62,8 +64,8 @@ class DetectedBarcode: Hashable, Equatable, CustomDebugStringConvertible {
     func outputAsDictionary() -> [String: Any] {
         return [
             "value": value,
-            "type": BarcodeType.getFromInt(intValue: barcodeType)!.rawValue,
-            "format": BarcodeFormat.getFromInt(intValue: format)!.rawValue,
+            "type": BarcodeType.getFromInt(intValue: barcodeType)?.rawValue ?? String(barcodeType),
+            "format": BarcodeFormat.getFromInt(intValue: format)?.rawValue ?? String(format),
             "distanceToCenter": round(distanceToCenter*100)/100.0
         ]
     }

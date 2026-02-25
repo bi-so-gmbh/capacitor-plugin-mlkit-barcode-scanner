@@ -15,8 +15,10 @@ class CameraViewController: UIViewController, BarcodesListener {
     private let sessionQueue = DispatchQueue(label: "sessionQueue")
     private var previewLayer = AVCaptureVideoPreviewLayer()
     private var settings: ScannerSettings
+    // swiftlint:disable implicitly_unwrapped_optional
     private var cameraOverlay: CameraOverlay!
     private var barcodeAnalyzer: BarcodeAnalyzer!
+    // swiftlint:enable implicitly_unwrapped_optional
     private var torchButton: UIButton?
     private var finishedAlready: Bool = false // ensure we only actually finish once
 
@@ -34,6 +36,8 @@ class CameraViewController: UIViewController, BarcodesListener {
         super.init(coder: coder)
     }
 
+    // super is empty and it is not required to call it
+    // swiftlint:disable:next overridden_super_call
     override func viewDidLoad() {
         cameraOverlay = CameraOverlay(settings: settings, parentView: view)
         barcodeAnalyzer = BarcodeAnalyzer(settings: settings, barcodesListener: self, cameraOverlay: cameraOverlay)
@@ -64,10 +68,12 @@ class CameraViewController: UIViewController, BarcodesListener {
             usleep(100)
         }
         usleep(150000)
+        super.viewWillAppear(animated)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         stopSession()
+        super.viewDidDisappear(animated)
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -75,6 +81,7 @@ class CameraViewController: UIViewController, BarcodesListener {
         setOrientation()
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func setOrientation() {
         previewLayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 

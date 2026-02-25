@@ -16,10 +16,8 @@ class BarcodeFormats {
 
     func getFormatFlags() -> Int {
         var flags: Int = 0
-        for key in formats.keys {
-            if formats[key]! {
-                flags += key.asInt
-            }
+        for key in formats.keys where formats[key] == true {
+            flags += key.asInt
         }
         return flags
     }

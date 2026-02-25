@@ -36,10 +36,8 @@ public enum BarcodeFormat: String, CaseIterable {
     }
 
     static func getFromInt(intValue: Int) -> BarcodeFormat? {
-        for barcodeFormat in BarcodeFormat.allCases {
-            if barcodeFormat.asInt == intValue {
-                return barcodeFormat
-            }
+        for barcodeFormat in BarcodeFormat.allCases where barcodeFormat.asInt == intValue {
+            return barcodeFormat
         }
         print("no BarcodeFormat found for value ", intValue)
         return nil

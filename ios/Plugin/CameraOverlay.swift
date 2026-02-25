@@ -6,11 +6,17 @@ class CameraOverlay: UIView {
     private var lastFrame: CMSampleBuffer?
     private(set) var scanArea: CGRect
     private var settings: ScannerSettings
+    // swiftlint:disable:next implicitly_unwrapped_optional
     private(set) var previewLayer: AVCaptureVideoPreviewLayer!
 
     init(settings: ScannerSettings, parentView: UIView) {
 
-        self.scanArea = Utils.calculateCGRect(height: parentView.bounds.height, width: parentView.bounds.width, scaleFactor: settings.detectorSize, aspectRatio: settings.aspectRatioF)
+        self.scanArea = Utils.calculateCGRect(
+            height: parentView.bounds.height,
+            width: parentView.bounds.width,
+            scaleFactor: settings.detectorSize,
+            aspectRatio: settings.aspectRatioF
+        )
         self.settings = settings
 
         super.init(frame: .zero)
@@ -40,7 +46,12 @@ class CameraOverlay: UIView {
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        self.scanArea = Utils.calculateCGRect(height: bounds.height, width: bounds.width, scaleFactor: settings.detectorSize, aspectRatio: settings.aspectRatioF)
+        self.scanArea = Utils.calculateCGRect(
+            height: bounds.height,
+            width: bounds.width,
+            scaleFactor: settings.detectorSize,
+            aspectRatio: settings.aspectRatioF
+        )
         if let context = UIGraphicsGetCurrentContext() {
             drawScanArea(context: context)
         }
@@ -82,7 +93,12 @@ class CameraOverlay: UIView {
             drawFocusLine(context: context, color: settings.focusLineUIColor, thickness: settings.focusLineThickness)
         }
         if settings.drawFocusRect {
-            drawScanAreaOutline(context: context, color: settings.focusRectUIColor, thickness: settings.focusRectBorderThickness, radius: settings.focusRectBorderRadius)
+            drawScanAreaOutline(
+                context: context,
+                color: settings.focusRectUIColor,
+                thickness: settings.focusRectBorderThickness,
+                radius: settings.focusRectBorderRadius
+            )
         }
     }
 

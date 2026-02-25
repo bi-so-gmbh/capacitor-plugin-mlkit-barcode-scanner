@@ -42,7 +42,7 @@ class ScannerSettings: CustomDebugStringConvertible {
     private(set) var debugOverlay: Bool = false
     private(set) var ignoreRotatedBarcodes: Bool = false
 
-    // swiftlint:disable:next cyclomatic_complexity
+    // swiftlint:disable:next cyclomatic_complexity function_body_length
     init(options: [String: Any]) {
         var bFormats: [String: Any]
         if let unwrapped: [String: Any] = options[Settings.BARCODE_FORMATS] as? [String: Any] {

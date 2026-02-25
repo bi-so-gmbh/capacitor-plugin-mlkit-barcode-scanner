@@ -10,11 +10,12 @@
 		031E3C5CB99CB14D5FC17FD6 /* Pods_PluginTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DBE27469A1CAEF395C41F10 /* Pods_PluginTests.framework */; };
 		50ADFF92201F53D600D50D53 /* Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFF88201F53D600D50D53 /* Plugin.framework */; };
 		50ADFF97201F53D600D50D53 /* MLKitBarcodeScannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFF96201F53D600D50D53 /* MLKitBarcodeScannerTests.swift */; };
-		50ADFF99201F53D600D50D53 /* MLKitBarcodeScannerPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADFF8B201F53D600D50D53 /* MLKitBarcodeScannerPlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
-		50ADFFA82020EE4F00D50D53 /* MLKitBarcodeScannerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* MLKitBarcodeScannerPlugin.m */; };
-		50E1A94820377CB70090CE1A /* MLKitBarcodeScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* MLKitBarcodeScannerPlugin.swift */; };
 		7C9BB3E80E3363297FDEE15A /* Pods_Plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB273BD8527A049119E54F8E /* Pods_Plugin.framework */; };
+		819599AC2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 819599A92F4EE50800575E37 /* MlKitBarcodeScannerPlugin.h */; };
+		819599AD2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819599AB2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.swift */; };
+		819599AE2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 819599AA2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.m */; };
+		819599AF2F4EE50800575E37 /* BarcodeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819599A82F4EE50800575E37 /* BarcodeType.swift */; };
 		DD11D0602A9F7A1000812BD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD11D05F2A9F7A1000812BD2 /* Assets.xcassets */; };
 		DD11D0662A9F83DE00812BD2 /* BarcodeFormats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11D0652A9F83DE00812BD2 /* BarcodeFormats.swift */; };
 		DD11D0682A9F854300812BD2 /* BarcodeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD11D0672A9F854300812BD2 /* BarcodeFormat.swift */; };
@@ -40,14 +41,15 @@
 		3DBE27469A1CAEF395C41F10 /* Pods_PluginTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PluginTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FBCDB001DAFBE0672C93BE8 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
 		50ADFF88201F53D600D50D53 /* Plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50ADFF8B201F53D600D50D53 /* MLKitBarcodeScannerPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLKitBarcodeScannerPlugin.h; sourceTree = "<group>"; };
 		50ADFF8C201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50ADFF91201F53D600D50D53 /* PluginTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PluginTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50ADFF96201F53D600D50D53 /* MLKitBarcodeScannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLKitBarcodeScannerTests.swift; sourceTree = "<group>"; };
 		50ADFF98201F53D600D50D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50ADFFA52020D75100D50D53 /* Capacitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Capacitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		50ADFFA72020EE4F00D50D53 /* MLKitBarcodeScannerPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MLKitBarcodeScannerPlugin.m; sourceTree = "<group>"; };
-		50E1A94720377CB70090CE1A /* MLKitBarcodeScannerPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitBarcodeScannerPlugin.swift; sourceTree = "<group>"; };
+		819599A82F4EE50800575E37 /* BarcodeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeType.swift; sourceTree = "<group>"; };
+		819599A92F4EE50800575E37 /* MlKitBarcodeScannerPlugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MlKitBarcodeScannerPlugin.h; sourceTree = "<group>"; };
+		819599AA2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MlKitBarcodeScannerPlugin.m; sourceTree = "<group>"; };
+		819599AB2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MlKitBarcodeScannerPlugin.swift; sourceTree = "<group>"; };
 		89E8B00043D784BCC7922D35 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		980615B0E93BA56539B2CD91 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AAD3BDD08277044D92B64FBD /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +111,10 @@
 		50ADFF8A201F53D600D50D53 /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
+				819599A82F4EE50800575E37 /* BarcodeType.swift */,
+				819599A92F4EE50800575E37 /* MlKitBarcodeScannerPlugin.h */,
+				819599AA2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.m */,
+				819599AB2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.swift */,
 				DD11D05F2A9F7A1000812BD2 /* Assets.xcassets */,
 				DDE64BD92A9F519900CAF679 /* BarcodesAnalyzer.swift */,
 				DDE64BD72A9F517000CAF679 /* CameraOverlay.swift */,
@@ -116,9 +122,6 @@
 				DDE64BD32A9F516400CAF679 /* DetectedBarcode.swift */,
 				DDE64BD12A9F513300CAF679 /* ScannerSettings.swift */,
 				DDE64BCF2A9F512E00CAF679 /* Utils.swift */,
-				50E1A94720377CB70090CE1A /* MLKitBarcodeScannerPlugin.swift */,
-				50ADFF8B201F53D600D50D53 /* MLKitBarcodeScannerPlugin.h */,
-				50ADFFA72020EE4F00D50D53 /* MLKitBarcodeScannerPlugin.m */,
 				50ADFF8C201F53D600D50D53 /* Info.plist */,
 				DD11D0652A9F83DE00812BD2 /* BarcodeFormats.swift */,
 				DD11D0672A9F854300812BD2 /* BarcodeFormat.swift */,
@@ -164,7 +167,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50ADFF99201F53D600D50D53 /* MLKitBarcodeScannerPlugin.h in Headers */,
+				819599AC2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,11 +359,12 @@
 				DDE64BD42A9F516400CAF679 /* DetectedBarcode.swift in Sources */,
 				DDE64BD82A9F517000CAF679 /* CameraOverlay.swift in Sources */,
 				DDE64BD22A9F513300CAF679 /* ScannerSettings.swift in Sources */,
-				50E1A94820377CB70090CE1A /* MLKitBarcodeScannerPlugin.swift in Sources */,
+				819599AD2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.swift in Sources */,
+				819599AE2F4EE50800575E37 /* MlKitBarcodeScannerPlugin.m in Sources */,
+				819599AF2F4EE50800575E37 /* BarcodeType.swift in Sources */,
 				DDE64BDA2A9F519900CAF679 /* BarcodesAnalyzer.swift in Sources */,
 				DD11D0682A9F854300812BD2 /* BarcodeFormat.swift in Sources */,
 				DDE64BD62A9F516C00CAF679 /* CameraViewController.swift in Sources */,
-				50ADFFA82020EE4F00D50D53 /* MLKitBarcodeScannerPlugin.m in Sources */,
 				DD11D0662A9F83DE00812BD2 /* BarcodeFormats.swift in Sources */,
 				DDE64BD02A9F512E00CAF679 /* Utils.swift in Sources */,
 			);

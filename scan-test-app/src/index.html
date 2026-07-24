@@ -19,33 +19,34 @@
   <meta name="color-scheme" content="light dark">
 
   <link rel="stylesheet" href="./css/index.css">
+
   <title>ML Kit Barcode Scanner Test</title>
 </head>
 
-<body class="scanner-app">
+<body>
 <div class="container px-4 py-4">
   <div class="row gy-4">
 
-    <div class="col-12 scanner-hero">
+    <div class="col-12">
       <p>
         Press the button below to open the camera and scan a barcode.
       </p>
 
       <button
               id="scan"
-              class="btn btn-primary btn-lg scanner-button scanner-button-primary"
+              class="btn btn-primary btn-lg"
       >
         Scan
       </button>
     </div>
 
-    <div class="col-12 scanner-log">
+    <div class="col-12">
       <h4>
         Log output
 
         <button
                 id="clearLog"
-                class="btn btn-primary btn-lg scanner-button scanner-button-secondary"
+                class="btn btn-primary btn-lg"
                 type="button"
         >
           Clear Log
@@ -55,7 +56,7 @@
       <pre id="output"></pre>
     </div>
 
-    <div class="col-12 scanner-settings">
+    <div class="col-12">
       <form>
         <h4>Scan options</h4>
 
@@ -156,16 +157,15 @@
           </div>
         </fieldset>
 
-        <details class="scanner-section">
+        <details>
           <summary>Barcode Formats</summary>
 
-          <fieldset class="barcode-options">
+          <fieldset>
             <legend>Barcode Formats:</legend>
 
-            <div class="barcode-actions">
+            <div>
               <button
                       id="selectAllBarcodeFormats"
-                      class="scanner-button scanner-button-secondary"
                       type="button"
               >
                 Select all
@@ -173,7 +173,6 @@
 
               <button
                       id="deselectAllBarcodeFormats"
-                      class="scanner-button scanner-button-secondary"
                       type="button"
               >
                 Deselect all
@@ -403,7 +402,7 @@
           </fieldset>
         </details>
 
-        <details class="scanner-section">
+        <details>
           <summary>Advanced Scanner Settings</summary>
 
           <fieldset>

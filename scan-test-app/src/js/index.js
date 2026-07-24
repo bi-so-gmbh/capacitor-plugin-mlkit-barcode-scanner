@@ -21,6 +21,21 @@ import {Capacitor} from '@capacitor/core'
 import {MlKitBarcodeScanner} from 'capacitor-plugin-ml-kit-barcode-scanner'
 
 const options = {
+  barcodeFormats: {
+    Aztec: true,
+    CodaBar: true,
+    Code39: true,
+    Code93: true,
+    Code128: true,
+    DataMatrix: true,
+    EAN8: true,
+    EAN13: true,
+    ITF: true,
+    PDF417: true,
+    QRCode: true,
+    UPCA: true,
+    UPCE: true
+  },
   beepOnSuccess: false,
   vibrateOnSuccess: false,
   detectorSize: 0.9,
@@ -73,6 +88,13 @@ async function scan() {
     }
   }
 
+  for (const format in options.barcodeFormats) {
+    const element = document.getElementById(format);
+    if (element) {
+      options.barcodeFormats[format] = element.checked
+    }
+  }
+
   try {
     let result = await MlKitBarcodeScanner.scan(options)
     console.log("result", result)
@@ -97,7 +119,7 @@ function init() {
   document.getElementById('clearLog').onclick = clearLog;
 
   for (const key in options) {
-    const element =  document.getElementById(key);
+    const element = document.getElementById(key);
     if (element) {
       if (element.tagName === "INPUT" && element.type === "range") {
         element.addEventListener("input", updateTextInput)
@@ -110,6 +132,13 @@ function init() {
       else {
         element.value = options[key]
       }
+    }
+  }
+
+  for (const format in options.barcodeFormats) {
+    const element = document.getElementById(format);
+    if (element) {
+      element.checked = options.barcodeFormats[format]
     }
   }
 }

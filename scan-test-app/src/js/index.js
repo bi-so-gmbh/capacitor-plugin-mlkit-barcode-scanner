@@ -63,8 +63,7 @@ function onSuccess(result) {
     const node = document.createElement('div')
     node.className = 'log_item'
     node.textContent =
-        `${barcode.value} ` +
-        `(${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
+      `${barcode.value} ` + `(${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
 
     scan.appendChild(node)
   }
@@ -81,14 +80,13 @@ function onFail(result) {
 }
 
 async function scan() {
-  console.log("scan button clicked")
+  console.log('scan button clicked')
   for (const key in options) {
-    const element =  document.getElementById(key);
+    const element = document.getElementById(key)
     if (element) {
-      if (element.tagName === "INPUT" && element.type === "checkbox") {
+      if (element.tagName === 'INPUT' && element.type === 'checkbox') {
         options[key] = element.checked
-      }
-      else {
+      } else {
         options[key] = element.value
       }
     }
@@ -147,27 +145,19 @@ function init() {
   document.getElementById('scan').onclick = scan
   document.getElementById('clearLog').onclick = clearLog
 
-  document.getElementById('selectAllBarcodeFormats').onclick =
-      selectAllBarcodeFormats
+  document.getElementById('selectAllBarcodeFormats').onclick = selectAllBarcodeFormats
 
-  document.getElementById('deselectAllBarcodeFormats').onclick =
-      deselectAllBarcodeFormats
+  document.getElementById('deselectAllBarcodeFormats').onclick = deselectAllBarcodeFormats
 
   for (const key in options) {
     const element = document.getElementById(key)
 
     if (element) {
-      if (
-          element.tagName === 'INPUT' &&
-          element.type === 'range'
-      ) {
+      if (element.tagName === 'INPUT' && element.type === 'range') {
         element.addEventListener('input', updateTextInput)
         element.nextElementSibling.value = options[key]
         element.value = options[key]
-      } else if (
-          element.tagName === 'INPUT' &&
-          element.type === 'checkbox'
-      ) {
+      } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
         element.checked = options[key]
       } else {
         element.value = options[key]
@@ -185,6 +175,5 @@ function init() {
 }
 
 function updateTextInput() {
-  document.getElementById(this.id).nextElementSibling.value =
-      this.value
+  document.getElementById(this.id).nextElementSibling.value = this.value
 }

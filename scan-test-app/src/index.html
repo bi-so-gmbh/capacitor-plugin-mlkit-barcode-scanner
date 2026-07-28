@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
 
   <meta
-          http-equiv="Content-Security-Policy"
-          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
-  >
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
+  />
 
-  <meta name="format-detection" content="telephone=no">
-  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
 
   <meta
-          name="viewport"
-          content="initial-scale=1, width=device-width, viewport-fit=cover"
-  >
+    name="viewport"
+    content="initial-scale=1, width=device-width, viewport-fit=cover"
+  />
 
-  <meta name="color-scheme" content="light dark">
+  <meta name="color-scheme" content="light dark" />
 
-  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/index.css" />
 
   <title>ML Kit Barcode Scanner Test</title>
 </head>
@@ -26,18 +26,12 @@
 <body>
 <div class="container px-4 py-4">
   <div class="row gy-4">
-
     <div class="col-12">
       <p>
         Press the button below to open the camera and scan a barcode.
       </p>
 
-      <button
-              id="scan"
-              class="btn btn-primary btn-lg"
-      >
-        Scan
-      </button>
+      <button id="scan" class="btn btn-primary btn-lg">Scan</button>
     </div>
 
     <div class="col-12">
@@ -45,9 +39,9 @@
         Log output
 
         <button
-                id="clearLog"
-                class="btn btn-primary btn-lg"
-                type="button"
+          id="clearLog"
+          class="btn btn-primary btn-lg"
+          type="button"
         >
           Clear Log
         </button>
@@ -65,93 +59,81 @@
 
           <div class="form-check form-switch">
             <input
-                    class="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="beepOnSuccess"
-                    name="beepOnSuccess"
-                    value="true"
-            >
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="beepOnSuccess"
+              name="beepOnSuccess"
+              value="true"
+            />
 
-            <label
-                    class="form-check-label"
-                    for="beepOnSuccess"
-            >
+            <label class="form-check-label" for="beepOnSuccess">
               Beep on success
             </label>
           </div>
 
           <div class="form-check form-switch">
             <input
-                    class="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="vibrateOnSuccess"
-                    name="vibrateOnSuccess"
-                    value="true"
-            >
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="vibrateOnSuccess"
+              name="vibrateOnSuccess"
+              value="true"
+            />
 
-            <label
-                    class="form-check-label"
-                    for="vibrateOnSuccess"
-            >
+            <label class="form-check-label" for="vibrateOnSuccess">
               Vibrate on success
             </label>
           </div>
 
           <div class="form-check form-switch">
             <input
-                    class="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="debugOverlay"
-                    name="debugOverlay"
-                    value="true"
-            >
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="debugOverlay"
+              name="debugOverlay"
+              value="true"
+            />
 
-            <label
-                    class="form-check-label"
-                    for="debugOverlay"
-            >
+            <label class="form-check-label" for="debugOverlay">
               Debug Overlay
             </label>
           </div>
 
           <div class="form-check form-switch">
             <input
-                    class="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="ignoreRotatedBarcodes"
-                    name="ignoreRotatedBarcodes"
-                    value="true"
-            >
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="ignoreRotatedBarcodes"
+              name="ignoreRotatedBarcodes"
+              value="true"
+            />
 
             <label
-                    class="form-check-label"
-                    for="ignoreRotatedBarcodes"
+              class="form-check-label"
+              for="ignoreRotatedBarcodes"
             >
               Ignore Rotated Barcodes
             </label>
           </div>
 
           <div class="form-range">
-            <label
-                    class="form-range-label"
-                    for="stableThreshold"
-            >
+            <label class="form-range-label" for="stableThreshold">
               Stable Threshold
             </label>
 
             <input
-                    class="form-range-input"
-                    type="range"
-                    min="0"
-                    max="20"
-                    step="1"
-                    id="stableThreshold"
-                    name="stableThreshold"
-            >
+              class="form-range-input"
+              type="range"
+              min="0"
+              max="20"
+              step="1"
+              id="stableThreshold"
+              name="stableThreshold"
+            />
 
             <output>5</output>
           </div>
@@ -164,238 +146,193 @@
             <legend>Barcode Formats:</legend>
 
             <div>
-              <button
-                      id="selectAllBarcodeFormats"
-                      type="button"
-              >
+              <button id="selectAllBarcodeFormats" type="button">
                 Select all
               </button>
 
-              <button
-                      id="deselectAllBarcodeFormats"
-                      type="button"
-              >
+              <button id="deselectAllBarcodeFormats" type="button">
                 Deselect all
               </button>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="Aztec"
-                      name="Aztec"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="Aztec"
+                name="Aztec"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="Aztec"
-              >
+              <label class="form-check-label" for="Aztec">
                 Aztec
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="CodaBar"
-                      name="CodaBar"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="CodaBar"
+                name="CodaBar"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="CodaBar"
-              >
+              <label class="form-check-label" for="CodaBar">
                 Codabar
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="Code39"
-                      name="Code39"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="Code39"
+                name="Code39"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="Code39"
-              >
+              <label class="form-check-label" for="Code39">
                 Code 39
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="Code93"
-                      name="Code93"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="Code93"
+                name="Code93"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="Code93"
-              >
+              <label class="form-check-label" for="Code93">
                 Code 93
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="Code128"
-                      name="Code128"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="Code128"
+                name="Code128"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="Code128"
-              >
+              <label class="form-check-label" for="Code128">
                 Code 128
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="DataMatrix"
-                      name="DataMatrix"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="DataMatrix"
+                name="DataMatrix"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="DataMatrix"
-              >
+              <label class="form-check-label" for="DataMatrix">
                 Data Matrix
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="EAN8"
-                      name="EAN8"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="EAN8"
+                name="EAN8"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="EAN8"
-              >
+              <label class="form-check-label" for="EAN8">
                 EAN-8
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="EAN13"
-                      name="EAN13"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="EAN13"
+                name="EAN13"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="EAN13"
-              >
+              <label class="form-check-label" for="EAN13">
                 EAN-13
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="ITF"
-                      name="ITF"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="ITF"
+                name="ITF"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="ITF"
-              >
+              <label class="form-check-label" for="ITF">
                 ITF
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="PDF417"
-                      name="PDF417"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="PDF417"
+                name="PDF417"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="PDF417"
-              >
+              <label class="form-check-label" for="PDF417">
                 PDF417
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="QRCode"
-                      name="QRCode"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="QRCode"
+                name="QRCode"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="QRCode"
-              >
+              <label class="form-check-label" for="QRCode">
                 QR Code
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="UPCA"
-                      name="UPCA"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="UPCA"
+                name="UPCA"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="UPCA"
-              >
+              <label class="form-check-label" for="UPCA">
                 UPC-A
               </label>
             </div>
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="UPCE"
-                      name="UPCE"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="UPCE"
+                name="UPCE"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="UPCE"
-              >
+              <label class="form-check-label" for="UPCE">
                 UPC-E
               </label>
             </div>
@@ -409,40 +346,37 @@
             <legend>Scan Area:</legend>
 
             <div class="form-range">
-              <label
-                      class="form-range-label"
-                      for="detectorSize"
-              >
+              <label class="form-range-label" for="detectorSize">
                 Size
               </label>
 
               <input
-                      class="form-range-input"
-                      type="range"
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      id="detectorSize"
-                      name="detectorSize"
-              >
+                class="form-range-input"
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                id="detectorSize"
+                name="detectorSize"
+              />
 
               <output>0.5</output>
             </div>
 
             <div class="form-text">
               <label
-                      class="form-text-label"
-                      for="detectorAspectRatio"
+                class="form-text-label"
+                for="detectorAspectRatio"
               >
                 Aspect Ratio
               </label>
 
               <input
-                      class="form-text-input"
-                      type="text"
-                      id="detectorAspectRatio"
-                      name="detectorAspectRatio"
-              >
+                class="form-text-input"
+                type="text"
+                id="detectorAspectRatio"
+                name="detectorAspectRatio"
+              />
             </div>
           </fieldset>
 
@@ -451,68 +385,62 @@
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="drawFocusRect"
-                      name="drawFocusRect"
-                      value="true"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="drawFocusRect"
+                name="drawFocusRect"
+                value="true"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="drawFocusRect"
-              >
+              <label class="form-check-label" for="drawFocusRect">
                 Draw
               </label>
             </div>
 
             <div class="form-text">
-              <label
-                      class="form-text-label"
-                      for="focusRectColor"
-              >
+              <label class="form-text-label" for="focusRectColor">
                 Color
               </label>
 
               <input
-                      class="form-text-input"
-                      type="text"
-                      id="focusRectColor"
-                      name="focusRectColor"
-              >
+                class="form-text-input"
+                type="text"
+                id="focusRectColor"
+                name="focusRectColor"
+              />
             </div>
 
             <div class="form-number">
               <label
-                      class="form-number-label"
-                      for="focusRectBorderThickness"
+                class="form-number-label"
+                for="focusRectBorderThickness"
               >
                 Thickness
               </label>
 
               <input
-                      class="form-number-input"
-                      type="number"
-                      id="focusRectBorderThickness"
-                      name="focusRectBorderThickness"
-              >
+                class="form-number-input"
+                type="number"
+                id="focusRectBorderThickness"
+                name="focusRectBorderThickness"
+              />
             </div>
 
             <div class="form-number">
               <label
-                      class="form-number-label"
-                      for="focusRectBorderRadius"
+                class="form-number-label"
+                for="focusRectBorderRadius"
               >
                 Radius
               </label>
 
               <input
-                      class="form-number-input"
-                      type="number"
-                      id="focusRectBorderRadius"
-                      name="focusRectBorderRadius"
-              >
+                class="form-number-input"
+                type="number"
+                id="focusRectBorderRadius"
+                name="focusRectBorderRadius"
+              />
             </div>
           </fieldset>
 
@@ -521,52 +449,46 @@
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="drawFocusLine"
-                      name="drawFocusLine"
-                      value="true"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="drawFocusLine"
+                name="drawFocusLine"
+                value="true"
+              />
 
-              <label
-                      class="form-check-label"
-                      for="drawFocusLine"
-              >
+              <label class="form-check-label" for="drawFocusLine">
                 Draw
               </label>
             </div>
 
             <div class="form-text">
-              <label
-                      class="form-text-label"
-                      for="focusLineColor"
-              >
+              <label class="form-text-label" for="focusLineColor">
                 Color
               </label>
 
               <input
-                      class="form-text-input"
-                      type="text"
-                      id="focusLineColor"
-                      name="focusLineColor"
-              >
+                class="form-text-input"
+                type="text"
+                id="focusLineColor"
+                name="focusLineColor"
+              />
             </div>
 
             <div class="form-number">
               <label
-                      class="form-number-label"
-                      for="focusLineThickness"
+                class="form-number-label"
+                for="focusLineThickness"
               >
                 Thickness
               </label>
 
               <input
-                      class="form-number-input"
-                      type="number"
-                      id="focusLineThickness"
-                      name="focusLineThickness"
-              >
+                class="form-number-input"
+                type="number"
+                id="focusLineThickness"
+                name="focusLineThickness"
+              />
             </div>
           </fieldset>
 
@@ -575,17 +497,17 @@
 
             <div class="form-check form-switch">
               <input
-                      class="form-check-input"
-                      type="checkbox"
-                      role="switch"
-                      id="drawFocusBackground"
-                      name="drawFocusBackground"
-                      value="true"
-              >
+                class="form-check-input"
+                type="checkbox"
+                role="switch"
+                id="drawFocusBackground"
+                name="drawFocusBackground"
+                value="true"
+              />
 
               <label
-                      class="form-check-label"
-                      for="drawFocusBackground"
+                class="form-check-label"
+                for="drawFocusBackground"
               >
                 Draw
               </label>
@@ -593,18 +515,18 @@
 
             <div class="form-text">
               <label
-                      class="form-text-label"
-                      for="focusBackgroundColor"
+                class="form-text-label"
+                for="focusBackgroundColor"
               >
                 Color
               </label>
 
               <input
-                      class="form-text-input"
-                      type="text"
-                      id="focusBackgroundColor"
-                      name="focusBackgroundColor"
-              >
+                class="form-text-input"
+                type="text"
+                id="focusBackgroundColor"
+                name="focusBackgroundColor"
+              />
             </div>
           </fieldset>
         </details>

@@ -39,7 +39,7 @@ const options = {
   beepOnSuccess: false,
   vibrateOnSuccess: false,
   detectorSize: 0.9,
-  detectorAspectRatio: '5:1',
+  detectorAspectRatio: '1:1',
   drawFocusRect: true,
   focusRectColor: '#FFFFFF',
   focusRectBorderRadius: 10,
@@ -58,12 +58,16 @@ init()
 
 function onSuccess(result) {
   const scan = document.createElement('div')
+
   for (const barcode of result.barcodes) {
     const node = document.createElement('div')
     node.className = 'log_item'
-    node.textContent = `${barcode.value} (${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
+    node.textContent =
+      `${barcode.value} ` + `(${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
+
     scan.appendChild(node)
   }
+
   document.getElementById('output').prepend(scan)
 }
 
@@ -71,6 +75,7 @@ function onFail(result) {
   const node = document.createElement('div')
   node.className = 'log_item'
   node.textContent = `${result}`
+
   document.getElementById('output').prepend(node)
 }
 
@@ -89,13 +94,15 @@ async function scan() {
 
   for (const format in options.barcodeFormats) {
     const element = document.getElementById(format)
+
     if (element) {
       options.barcodeFormats[format] = element.checked
     }
   }
 
   try {
-    let result = await MlKitBarcodeScanner.scan(options)
+    const result = await MlKitBarcodeScanner.scan(options)
+
     console.log('result', result)
     onSuccess(result)
   } catch (error) {
@@ -112,13 +119,39 @@ function clearLog() {
   }
 }
 
+function setAllBarcodeFormats(checked) {
+  for (const format in options.barcodeFormats) {
+    const element = document.getElementById(format)
+
+    if (element) {
+      element.checked = checked
+    }
+
+    options.barcodeFormats[format] = checked
+  }
+}
+
+function selectAllBarcodeFormats() {
+  setAllBarcodeFormats(true)
+}
+
+function deselectAllBarcodeFormats() {
+  setAllBarcodeFormats(false)
+}
+
 function init() {
   console.log('Running capacitor-' + Capacitor.getPlatform())
+
   document.getElementById('scan').onclick = scan
   document.getElementById('clearLog').onclick = clearLog
 
+  document.getElementById('selectAllBarcodeFormats').onclick = selectAllBarcodeFormats
+
+  document.getElementById('deselectAllBarcodeFormats').onclick = deselectAllBarcodeFormats
+
   for (const key in options) {
     const element = document.getElementById(key)
+
     if (element) {
       if (element.tagName === 'INPUT' && element.type === 'range') {
         element.addEventListener('input', updateTextInput)
@@ -133,7 +166,8 @@ function init() {
   }
 
   for (const format in options.barcodeFormats) {
-    const element = document.getElementById(format);
+    const element = document.getElementById(format)
+
     if (element) {
       element.checked = options.barcodeFormats[format]
     }

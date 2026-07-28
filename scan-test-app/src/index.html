@@ -1,201 +1,618 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="./css/index.css">
-        <title>ML Kit Barcode Scanner Test</title>
-    </head>
-    <body>
-        <div class="container px-4 py-4">
-          <div class="row gy-4">
-            <div class="col-12">
-              <p>Press the button below to open the camera and scan a barcode.</p>
-              <button id="scan" class="btn btn-primary btn-lg">Scan</button>
-            </div>
-            <div class="col-12">
-              <form>
-                <h4>Scan options</h4>
-                <fieldset>
-                  <legend>General:</legend>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="beepOnSuccess" name="beepOnSuccess" value="true">
-                    <label class="form-check-label" for="beepOnSuccess">Beep on success</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="vibrateOnSuccess" name="vibrateOnSuccess" value="true">
-                    <label class="form-check-label" for="vibrateOnSuccess">Vibrate on success</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="debugOverlay" name="debugOverlay" value="true">
-                    <label class="form-check-label" for="debugOverlay">Debug Overlay</label>
-                  </div>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="ignoreRotatedBarcodes" name="ignoreRotatedBarcodes" value="true">
-                    <label class="form-check-label" for="ignoreRotatedBarcodes">Ignore Rotated Barcodes</label>
-                  </div>
-                  <div class="form-range">
-                    <label class="form-range-label" for="stableThreshold">StableThreshold</label>
-                    <input class="form-range-input" type="range" min="0" max="20" step="1" id="stableThreshold" name="stableThreshold">
-                    <output>5</output>
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Barcode Formats:</legend>
+<head>
+  <meta charset="utf-8">
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="Aztec" name="Aztec">
-                    <label class="form-check-label" for="Aztec">Aztec</label>
-                  </div>
+  <meta
+          http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
+  >
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="CodaBar" name="CodaBar">
-                    <label class="form-check-label" for="CodaBar">Codabar</label>
-                  </div>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="Code39" name="Code39">
-                    <label class="form-check-label" for="Code39">Code 39</label>
-                  </div>
+  <meta
+          name="viewport"
+          content="initial-scale=1, width=device-width, viewport-fit=cover"
+  >
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="Code93" name="Code93">
-                    <label class="form-check-label" for="Code93">Code 93</label>
-                  </div>
+  <meta name="color-scheme" content="light dark">
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="Code128" name="Code128">
-                    <label class="form-check-label" for="Code128">Code 128</label>
-                  </div>
+  <link rel="stylesheet" href="./css/index.css">
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="DataMatrix" name="DataMatrix">
-                    <label class="form-check-label" for="DataMatrix">Data Matrix</label>
-                  </div>
+  <title>ML Kit Barcode Scanner Test</title>
+</head>
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="EAN8" name="EAN8">
-                    <label class="form-check-label" for="EAN8">EAN-8</label>
-                  </div>
+<body>
+<div class="container px-4 py-4">
+  <div class="row gy-4">
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="EAN13" name="EAN13">
-                    <label class="form-check-label" for="EAN13">EAN-13</label>
-                  </div>
+    <div class="col-12">
+      <p>
+        Press the button below to open the camera and scan a barcode.
+      </p>
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="ITF" name="ITF">
-                    <label class="form-check-label" for="ITF">ITF</label>
-                  </div>
+      <button
+              id="scan"
+              class="btn btn-primary btn-lg"
+      >
+        Scan
+      </button>
+    </div>
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="PDF417" name="PDF417">
-                    <label class="form-check-label" for="PDF417">PDF417</label>
-                  </div>
+    <div class="col-12">
+      <h4>
+        Log output
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="QRCode" name="QRCode">
-                    <label class="form-check-label" for="QRCode">QR Code</label>
-                  </div>
+        <button
+                id="clearLog"
+                class="btn btn-primary btn-lg"
+                type="button"
+        >
+          Clear Log
+        </button>
+      </h4>
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="UPCA" name="UPCA">
-                    <label class="form-check-label" for="UPCA">UPC-A</label>
-                  </div>
+      <pre id="output"></pre>
+    </div>
 
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="UPCE" name="UPCE">
-                    <label class="form-check-label" for="UPCE">UPC-E</label>
-                  </div>
+    <div class="col-12">
+      <form>
+        <h4>Scan options</h4>
 
-                </fieldset>
+        <fieldset>
+          <legend>General:</legend>
 
-                <fieldset>
-                  <legend>Scan Area:</legend>
+          <div class="form-check form-switch">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="beepOnSuccess"
+                    name="beepOnSuccess"
+                    value="true"
+            >
 
-                  <div class="form-range">
-                    <label class="form-range-label" for="detectorSize">Size</label>
-                    <input
-                            class="form-range-input"
-                            type="range"
-                            min="0"
-                            max="1"
-                            step="0.1"
-                            id="detectorSize"
-                            name="detectorSize"
-                    >
-                    <output>0.5</output>
-                  </div>
-
-                  <div class="form-text">
-                    <label class="form-text-label" for="detectorAspectRatio">
-                      Aspect Ratio
-                    </label>
-                    <input
-                            class="form-text-input"
-                            type="text"
-                            id="detectorAspectRatio"
-                            name="detectorAspectRatio"
-                    >
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Rectangle Outline:</legend>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="drawFocusRect" name="drawFocusRect" value="true">
-                    <label class="form-check-label" for="drawFocusRect">Draw</label>
-                  </div>
-                  <div class="form-text">
-                    <label class="form-text-label" for="focusRectColor">Color</label>
-                    <input class="form-text-input" type="text" id="focusRectColor" name="focusRectColor">
-                  </div>
-                  <div class="form-number">
-                    <label class="form-number-label" for="focusRectBorderThickness">Thickness</label>
-                    <input class="form-number-input" type="number" id="focusRectBorderThickness" name="focusRectBorderThickness">
-                  </div>
-                  <div class="form-number">
-                    <label class="form-number-label" for="focusRectBorderRadius">Radius</label>
-                    <input class="form-number-input" type="number" id="focusRectBorderRadius" name="focusRectBorderRadius">
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Center Line:</legend>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="drawFocusLine" name="drawFocusLine" value="true">
-                    <label class="form-check-label" for="drawFocusLine">Draw</label>
-                  </div>
-                  <div class="form-text">
-                    <label class="form-text-label" for="focusLineColor">Color</label>
-                    <input class="form-text-input" type="text" id="focusLineColor" name="focusLineColor">
-                  </div>
-                  <div class="form-number">
-                    <label class="form-number-label" for="focusLineThickness">Thickness</label>
-                    <input class="form-number-input" type="number" id="focusLineThickness" name="focusLineThickness">
-                  </div>
-                </fieldset>
-                <fieldset>
-                  <legend>Background:</legend>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="drawFocusBackground" name="drawFocusBackground" value="true">
-                    <label class="form-check-label" for="drawFocusBackground">Draw</label>
-                  </div>
-                  <div class="form-text">
-                    <label class="form-text-label" for="focusBackgroundColor">Color</label>
-                    <input class="form-text-input" type="text" id="focusBackgroundColor" name="focusBackgroundColor">
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-            <div class="col-12">
-              <h4>Log output <button id="clearLog" class="btn btn-primary btn-lg" style="float: right;">Clear Log</button></h4>
-              <pre id="output"></pre>
-            </div>
+            <label
+                    class="form-check-label"
+                    for="beepOnSuccess"
+            >
+              Beep on success
+            </label>
           </div>
-        </div>
-        <script src="./js/index.js" type="module"></script>
-    </body>
+
+          <div class="form-check form-switch">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="vibrateOnSuccess"
+                    name="vibrateOnSuccess"
+                    value="true"
+            >
+
+            <label
+                    class="form-check-label"
+                    for="vibrateOnSuccess"
+            >
+              Vibrate on success
+            </label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="debugOverlay"
+                    name="debugOverlay"
+                    value="true"
+            >
+
+            <label
+                    class="form-check-label"
+                    for="debugOverlay"
+            >
+              Debug Overlay
+            </label>
+          </div>
+
+          <div class="form-check form-switch">
+            <input
+                    class="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="ignoreRotatedBarcodes"
+                    name="ignoreRotatedBarcodes"
+                    value="true"
+            >
+
+            <label
+                    class="form-check-label"
+                    for="ignoreRotatedBarcodes"
+            >
+              Ignore Rotated Barcodes
+            </label>
+          </div>
+
+          <div class="form-range">
+            <label
+                    class="form-range-label"
+                    for="stableThreshold"
+            >
+              Stable Threshold
+            </label>
+
+            <input
+                    class="form-range-input"
+                    type="range"
+                    min="0"
+                    max="20"
+                    step="1"
+                    id="stableThreshold"
+                    name="stableThreshold"
+            >
+
+            <output>5</output>
+          </div>
+        </fieldset>
+
+        <details>
+          <summary>Barcode Formats</summary>
+
+          <fieldset>
+            <legend>Barcode Formats:</legend>
+
+            <div>
+              <button
+                      id="selectAllBarcodeFormats"
+                      type="button"
+              >
+                Select all
+              </button>
+
+              <button
+                      id="deselectAllBarcodeFormats"
+                      type="button"
+              >
+                Deselect all
+              </button>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="Aztec"
+                      name="Aztec"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="Aztec"
+              >
+                Aztec
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="CodaBar"
+                      name="CodaBar"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="CodaBar"
+              >
+                Codabar
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="Code39"
+                      name="Code39"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="Code39"
+              >
+                Code 39
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="Code93"
+                      name="Code93"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="Code93"
+              >
+                Code 93
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="Code128"
+                      name="Code128"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="Code128"
+              >
+                Code 128
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="DataMatrix"
+                      name="DataMatrix"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="DataMatrix"
+              >
+                Data Matrix
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="EAN8"
+                      name="EAN8"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="EAN8"
+              >
+                EAN-8
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="EAN13"
+                      name="EAN13"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="EAN13"
+              >
+                EAN-13
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="ITF"
+                      name="ITF"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="ITF"
+              >
+                ITF
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="PDF417"
+                      name="PDF417"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="PDF417"
+              >
+                PDF417
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="QRCode"
+                      name="QRCode"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="QRCode"
+              >
+                QR Code
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="UPCA"
+                      name="UPCA"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="UPCA"
+              >
+                UPC-A
+              </label>
+            </div>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="UPCE"
+                      name="UPCE"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="UPCE"
+              >
+                UPC-E
+              </label>
+            </div>
+          </fieldset>
+        </details>
+
+        <details>
+          <summary>Advanced Scanner Settings</summary>
+
+          <fieldset>
+            <legend>Scan Area:</legend>
+
+            <div class="form-range">
+              <label
+                      class="form-range-label"
+                      for="detectorSize"
+              >
+                Size
+              </label>
+
+              <input
+                      class="form-range-input"
+                      type="range"
+                      min="0"
+                      max="1"
+                      step="0.1"
+                      id="detectorSize"
+                      name="detectorSize"
+              >
+
+              <output>0.5</output>
+            </div>
+
+            <div class="form-text">
+              <label
+                      class="form-text-label"
+                      for="detectorAspectRatio"
+              >
+                Aspect Ratio
+              </label>
+
+              <input
+                      class="form-text-input"
+                      type="text"
+                      id="detectorAspectRatio"
+                      name="detectorAspectRatio"
+              >
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Rectangle Outline:</legend>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="drawFocusRect"
+                      name="drawFocusRect"
+                      value="true"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="drawFocusRect"
+              >
+                Draw
+              </label>
+            </div>
+
+            <div class="form-text">
+              <label
+                      class="form-text-label"
+                      for="focusRectColor"
+              >
+                Color
+              </label>
+
+              <input
+                      class="form-text-input"
+                      type="text"
+                      id="focusRectColor"
+                      name="focusRectColor"
+              >
+            </div>
+
+            <div class="form-number">
+              <label
+                      class="form-number-label"
+                      for="focusRectBorderThickness"
+              >
+                Thickness
+              </label>
+
+              <input
+                      class="form-number-input"
+                      type="number"
+                      id="focusRectBorderThickness"
+                      name="focusRectBorderThickness"
+              >
+            </div>
+
+            <div class="form-number">
+              <label
+                      class="form-number-label"
+                      for="focusRectBorderRadius"
+              >
+                Radius
+              </label>
+
+              <input
+                      class="form-number-input"
+                      type="number"
+                      id="focusRectBorderRadius"
+                      name="focusRectBorderRadius"
+              >
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Center Line:</legend>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="drawFocusLine"
+                      name="drawFocusLine"
+                      value="true"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="drawFocusLine"
+              >
+                Draw
+              </label>
+            </div>
+
+            <div class="form-text">
+              <label
+                      class="form-text-label"
+                      for="focusLineColor"
+              >
+                Color
+              </label>
+
+              <input
+                      class="form-text-input"
+                      type="text"
+                      id="focusLineColor"
+                      name="focusLineColor"
+              >
+            </div>
+
+            <div class="form-number">
+              <label
+                      class="form-number-label"
+                      for="focusLineThickness"
+              >
+                Thickness
+              </label>
+
+              <input
+                      class="form-number-input"
+                      type="number"
+                      id="focusLineThickness"
+                      name="focusLineThickness"
+              >
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Background:</legend>
+
+            <div class="form-check form-switch">
+              <input
+                      class="form-check-input"
+                      type="checkbox"
+                      role="switch"
+                      id="drawFocusBackground"
+                      name="drawFocusBackground"
+                      value="true"
+              >
+
+              <label
+                      class="form-check-label"
+                      for="drawFocusBackground"
+              >
+                Draw
+              </label>
+            </div>
+
+            <div class="form-text">
+              <label
+                      class="form-text-label"
+                      for="focusBackgroundColor"
+              >
+                Color
+              </label>
+
+              <input
+                      class="form-text-input"
+                      type="text"
+                      id="focusBackgroundColor"
+                      name="focusBackgroundColor"
+              >
+            </div>
+          </fieldset>
+        </details>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="./js/index.js" type="module"></script>
+</body>
 </html>

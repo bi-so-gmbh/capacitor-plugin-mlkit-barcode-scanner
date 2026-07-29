@@ -24,26 +24,21 @@
 </head>
 
 <body>
-<div class="container">
-  <div class="section scan-section">
+  <div id="section-scann" class="section">
     <p>Press the button below to open the camera and scan a barcode.</p>
 
-    <button id="scan">Scan</button>
+    <button id="scan" type="button">Scan</button>
   </div>
 
-  <div class="section output-section">
-    <h4>
-      Log output
-
-      <button id="clearLog" type="button">Clear Log</button>
-    </h4>
-
+  <div id="section-output" class="section">
+    <h4>Log output</h4>
+    <button id="clearLog" type="button">Clear Log</button>
     <pre id="output"></pre>
   </div>
 
-  <h4>Scan options</h4>
   <form>
-    <div class="section section-general">
+    <h3>Scan options</h3>
+    <div id="section-general" class="section">
       <fieldset>
         <legend>General:</legend>
 
@@ -129,22 +124,20 @@
         </div>
       </fieldset>
     </div>
-    <div class="section section-formats">
+    <div id="section-formats" class="section">
       <details>
         <summary>Barcode Formats</summary>
 
         <fieldset>
-          <legend>Barcode Formats:</legend>
-
-          <div>
+          <legend>
             <button id="selectAllBarcodeFormats" type="button">
               Select all
             </button>
-
+            /
             <button id="deselectAllBarcodeFormats" type="button">
               Deselect all
             </button>
-          </div>
+          </legend>
 
           <div class="form-check form-switch">
             <input
@@ -330,7 +323,7 @@
         </fieldset>
       </details>
     </div>
-    <div class="section section-advanced">
+    <div id="section-advanced" class="section">
       <details>
         <summary>Advanced Scanner Settings</summary>
 
@@ -524,7 +517,6 @@
       </details>
     </div>
   </form>
-</div>
 
 <script src="./js/index.js" type="module"></script>
 </body>

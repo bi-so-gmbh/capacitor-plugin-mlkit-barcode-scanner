@@ -20,7 +20,7 @@
 import { Capacitor } from '@capacitor/core'
 import { MlKitBarcodeScanner } from '@biso_gmbh/capacitor-plugin-ml-kit-barcode-scanner'
 
-const options = {
+const defaultOptions = {
   barcodeFormats: {
     Aztec: true,
     CodaBar: true,
@@ -39,7 +39,7 @@ const options = {
   beepOnSuccess: false,
   vibrateOnSuccess: false,
   detectorSize: 0.9,
-  detectorAspectRatio: '1:1',
+  detectorAspectRatio: '5:1',
   drawFocusRect: true,
   focusRectColor: '#FFFFFF',
   focusRectBorderRadius: 10,
@@ -57,18 +57,17 @@ const options = {
 init()
 
 function onSuccess(result) {
-  const scan = document.createElement('div')
+  const htmlStrings = result.barcodes
+    .map(
+      barcode => `
+    <div class="log_item">
+      <strong>${barcode.value}</strong> (${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})
+    </div>
+  `
+    )
+    .join('')
 
-  for (const barcode of result.barcodes) {
-    const node = document.createElement('div')
-    node.className = 'log_item'
-    node.textContent =
-      `${barcode.value} ` + `(${barcode.format}/${barcode.type} - ${barcode.distanceToCenter})`
-
-    scan.appendChild(node)
-  }
-
-  document.getElementById('output').prepend(scan)
+  document.getElementById('output').insertAdjacentHTML('afterbegin', htmlStrings)
 }
 
 function onFail(result) {
@@ -79,9 +78,9 @@ function onFail(result) {
   document.getElementById('output').prepend(node)
 }
 
-async function scan() {
-  console.log('scan button clicked')
-  for (const key in options) {
+function optionsFromHTML() {
+  let options = {}
+  for (const key in defaultOptions) {
     const element = document.getElementById(key)
     if (element) {
       if (element.tagName === 'INPUT' && element.type === 'checkbox') {
@@ -92,7 +91,8 @@ async function scan() {
     }
   }
 
-  for (const format in options.barcodeFormats) {
+  options.barcodeFormats = {}
+  for (const format in defaultOptions.barcodeFormats) {
     const element = document.getElementById(format)
 
     if (element) {
@@ -100,61 +100,18 @@ async function scan() {
     }
   }
 
-  try {
-    const result = await MlKitBarcodeScanner.scan(options)
-
-    console.log('result', result)
-    onSuccess(result)
-  } catch (error) {
-    console.log(error)
-    onFail(error)
-  }
+  return options
 }
 
-function clearLog() {
-  let logItems = document.getElementsByClassName('log_item')
-  logItems = [...logItems]
-  for (const item of logItems) {
-    item.parentNode.removeChild(item)
-  }
-}
-
-function setAllBarcodeFormats(checked) {
-  for (const format in options.barcodeFormats) {
-    const element = document.getElementById(format)
-
-    if (element) {
-      element.checked = checked
-    }
-
-    options.barcodeFormats[format] = checked
-  }
-}
-
-function selectAllBarcodeFormats() {
-  setAllBarcodeFormats(true)
-}
-
-function deselectAllBarcodeFormats() {
-  setAllBarcodeFormats(false)
-}
-
-function init() {
-  console.log('Running capacitor-' + Capacitor.getPlatform())
-
-  document.getElementById('scan').onclick = scan
-  document.getElementById('clearLog').onclick = clearLog
-
-  document.getElementById('selectAllBarcodeFormats').onclick = selectAllBarcodeFormats
-
-  document.getElementById('deselectAllBarcodeFormats').onclick = deselectAllBarcodeFormats
-
+function optionsToHTML(options = defaultOptions) {
   for (const key in options) {
     const element = document.getElementById(key)
 
     if (element) {
       if (element.tagName === 'INPUT' && element.type === 'range') {
-        element.addEventListener('input', updateTextInput)
+        element.oninput = e => {
+          e.target.nextElementSibling.value = e.target.value
+        }
         element.nextElementSibling.value = options[key]
         element.value = options[key]
       } else if (element.tagName === 'INPUT' && element.type === 'checkbox') {
@@ -174,6 +131,41 @@ function init() {
   }
 }
 
-function updateTextInput() {
-  document.getElementById(this.id).nextElementSibling.value = this.value
+async function scan() {
+  console.log('scan button clicked')
+  const options = optionsFromHTML()
+
+  try {
+    const result = await MlKitBarcodeScanner.scan(options)
+
+    console.log('result', result)
+    onSuccess(result)
+  } catch (error) {
+    console.log(error)
+    onFail(error)
+  }
+}
+
+function clearLog() {
+  document.getElementById('output').innerHTML = ''
+}
+
+function setAllBarcodeFormats(checked) {
+  const options = optionsFromHTML()
+
+  for (const format in options.barcodeFormats) {
+    options.barcodeFormats[format] = checked
+  }
+
+  optionsToHTML(options)
+}
+
+function init(options = defaultOptions) {
+  console.log('Running capacitor-' + Capacitor.getPlatform())
+  document.getElementById('scan').onclick = scan
+  document.getElementById('clearLog').onclick = clearLog
+  document.getElementById('selectAllBarcodeFormats').onclick = () => setAllBarcodeFormats(true)
+  document.getElementById('deselectAllBarcodeFormats').onclick = () => setAllBarcodeFormats(false)
+
+  optionsToHTML(options)
 }
